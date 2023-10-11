@@ -5,6 +5,7 @@ editor: visual
 ---
 ## Convertir  
 ```{r}
+# Leer los diferentes tablas
 db1 = read.csv("co2_production.csv")
 db2 = read.csv("gross_national_income_per_capital.csv")
 db3 = read.csv("human_development_index.csv")
@@ -42,6 +43,7 @@ db5 <- db5 %>%
 ```
 
 ```{r}
+# Junto las primeras tablas
 db <- db1 %>% 
   left_join(db2, by = "ISO3") %>% 
   left_join(db3, by = "ISO3") %>% 
@@ -52,6 +54,8 @@ db <- db1 %>%
 
 
 ```{r}
+# Arreglar los datos para hacer el join
+
 db5[27, "Country"] <- db[23, "Country"]   # Bolivia
 db5[33, "Country"] <- db[26, "Country"]   # Brunei
 db[34, "Country"] <- db5[51, "Country"]   # Costa d'Ivoire
@@ -77,6 +81,8 @@ db5[248, "Country"] <- db[189, "Country"] # Vietnam
 
 
 ```{r}
+# data final
+
 db <- db %>% 
   left_join(db5, by= "Country")
 ```
