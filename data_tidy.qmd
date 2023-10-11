@@ -87,5 +87,35 @@ db <- db %>%
   left_join(db5, by= "Country")
 ```
 
+```{r}
+db <- db %>%
+  mutate(region = if_else(
+    region == "",
+    NA, 
+    region
+  ))
+```
 
+```{r}
+db <- db %>%
+  mutate(hdicode = if_else(
+    hdicode == "",
+    NA, 
+    hdicode
+  ))
+```
+
+
+
+```{r}
+db <- db %>% 
+  rename("HDI_level" = "hdicode", "Region" = "region", "HDI_rank" = "hdi_rank_2021", 
+         "CO2_prod" = "co2_prod_2021", "GNIPC" = "gnipc_2021", "HDI" = "hdi_2021", "Life_exp" 
+         = "le_2021")
+```
+
+```{r}
+db <- db %>% 
+  select(1,2,4,3,5,8,6,7,9,10)
+```
 
