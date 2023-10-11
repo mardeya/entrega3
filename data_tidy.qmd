@@ -13,6 +13,7 @@ db4 = read.csv("life_expectancy_by_birth.csv")
 
 
 ```{r}
+# Se pot crear una funció per tal de no repetir 4 vegades el codi
 library(tidyverse)
 
 db1 <- db1 %>% 
