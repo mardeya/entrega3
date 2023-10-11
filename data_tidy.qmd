@@ -119,3 +119,12 @@ db <- db %>%
   select(1,2,4,3,5,8,6,7,9,10)
 ```
 
+
+```{r}
+db <- db %>% 
+  mutate(HDI_level = factor(HDI_level), Region = factor(Region))
+
+levels(db$HDI_level)
+
+```
+
