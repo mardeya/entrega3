@@ -110,7 +110,7 @@ db <- db %>%
 ```{r}
 db <- db %>% 
   rename("HDI_level" = "hdicode", "Region" = "region", "HDI_rank" = "hdi_rank_2021", 
-         "CO2_prod" = "co2_prod_2021", "GNIPC" = "gnipc_2021", "HDI" = "hdi_2021", "Life_exp" 
+         "CO2_prod" = "co2_prod_2021", "GNIPC" = "gnipc_2021", "HDI" = "hdi_2021", "Life_expect" 
          = "le_2021")
 ```
 
@@ -130,4 +130,13 @@ str(db)
 
 ```
 
+## Correlación
+
+La matriz de correlación es la siguiente
+
+```{r}
+db %>% 
+  select(HDI, CO2_prod, GNIPC, Life_expect, Population) %>% 
+  cor( use = "pairwise.complete.obs")
+```
 
