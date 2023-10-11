@@ -122,9 +122,12 @@ db <- db %>%
 
 ```{r}
 db <- db %>% 
-  mutate(HDI_level = factor(HDI_level), Region = factor(Region))
+  mutate(HDI_level = factor(HDI_level, ordered = T, 
+                            levels = c("Low", "Medium", "High", "Very High")
+                            ), Region = factor(Region))
 
-levels(db$HDI_level)
+str(db)
 
 ```
+
 
