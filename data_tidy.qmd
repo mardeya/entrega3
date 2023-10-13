@@ -3,14 +3,15 @@ title: "Carga Datasets"
 format: html
 editor: visual
 ---
-## Convertir  
+
+## Convertir
+
 ```{r}
 # Leer los diferentes tablas
 db1 = read.csv("co2_production.csv")
 db2 = read.csv("gross_national_income_per_capital.csv")
 db3 = read.csv("human_development_index.csv")
 db4 = read.csv("life_expectancy_by_birth.csv")
-
 db5 = read.csv("population.csv")
 ```
 
@@ -51,8 +52,6 @@ db <- db1 %>%
   
 ```
 
-
-
 ```{r}
 # Arreglar los datos para hacer el join
 
@@ -79,7 +78,6 @@ db5[247, "Country"] <- db[188, "Country"] # Venezuela
 db5[248, "Country"] <- db[189, "Country"] # Vietnam
 ```
 
-
 ```{r}
 # data final
 
@@ -105,8 +103,6 @@ db <- db %>%
   ))
 ```
 
-
-
 ```{r}
 db <- db %>% 
   rename("HDI_level" = "hdicode", "Region" = "region", "HDI_rank" = "hdi_rank_2021", 
@@ -118,7 +114,6 @@ db <- db %>%
 db <- db %>% 
   select(1,2,4,3,5,8,6,7,9,10)
 ```
-
 
 ```{r}
 db <- db %>% 
@@ -135,8 +130,20 @@ str(db)
 La matriz de correlación es la siguiente
 
 ```{r}
+library("ggcorrplot")
+
 db %>% 
   select(HDI, CO2_prod, GNIPC, Life_expect, Population) %>% 
-  cor( use = "pairwise.complete.obs")
+  na.omit %>%
+  cor %>% 
+  ggcorrplot(hc.order=TRUE,type="lower")
+```
+
+```{r}
+db %>% 
+  select(HDI, CO2_prod, GNIPC, Life_expect, Population) %>% 
+  na.omit %>%
+  cor
+
 ```
 
