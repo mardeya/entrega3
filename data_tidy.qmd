@@ -128,6 +128,11 @@ db <- db %>%
 str(db)
 ```
 
+
+```{r}
+write.csv(db, "dataset_tidy.csv", row.names = FALSE)
+```
+
 ## Correlación
 
 La matriz de correlación es la siguiente
