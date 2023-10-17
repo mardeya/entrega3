@@ -13,14 +13,14 @@ db2 = read.csv("gross_national_income_per_capital.csv")
 db3 = read.csv("human_development_index.csv")
 db4 = read.csv("life_expectancy_by_birth.csv")
 db5 = read.csv("population.csv")
+db6 = read.csv("country_continent.csv")
 ```
 
 ```{r}
-# Se pot crear una funció per tal de no repetir 4 vegades el codi
 library(tidyverse)
 
 db1 <- db1 %>% 
-  select(1:5, co2_prod_2021) %>% 
+  select(1:3, 5, co2_prod_2021) %>% 
   dplyr::filter(ISO3 != "")
 
 db2 <- db2 %>% 
@@ -40,6 +40,9 @@ db5 <- db5 %>%
   rename(Country = Country.name) %>% 
   select(Country, Population)
 
+db6 <- db6 %>% 
+  select(code_3, continent) %>% 
+  rename(ISO3 = code_3, Continent = continent)
 
 ```
 
@@ -57,16 +60,16 @@ db <- db1 %>%
 
 db5[27, "Country"] <- db[23, "Country"]   # Bolivia
 db5[33, "Country"] <- db[26, "Country"]   # Brunei
-db[34, "Country"] <- db5[51, "Country"]   # Costa d'Ivoire
+db[34, "Country"] <- db5[51, "Country"]   # Costa de marfil
 db5[57, "Country"] <- db[36, "Country"]   # Rep. Congo
 db5[40, "Country"] <- db[40, "Country"]   # Cabo Verde
 db5[149, "Country"] <- db[60, "Country"]  # Micronesia
 db5[98, "Country"] <- db[73, "Country"]   # Hong Kong
 db5[103, "Country"] <- db[81, "Country"]  # Iran
-db[95, "Country"] <- db5[215, "Country"]  # Korea del Sud
+db[95, "Country"] <- db5[215, "Country"]  # Corea del Sur
 db5[120, "Country"] <- db[97, "Country"]  # Laos
 db5[150, "Country"] <- db[110, "Country"] # Moldova
-db[143, "Country"] <- db5[169, "Country"] # Korea del Norte
+db[143, "Country"] <- db5[169, "Country"] # Corea del Norte
 db5[178, "Country"] <- db[146, "Country"] # Palestina
 db5[190, "Country"] <- db[149, "Country"] # Russia
 db5[69, "Country"] <- db[167, "Country"]  # Eswatini
@@ -82,16 +85,8 @@ db5[248, "Country"] <- db[189, "Country"] # Vietnam
 # data final
 
 db <- db %>% 
-  left_join(db5, by= "Country")
-```
-
-```{r}
-db <- db %>%
-  mutate(region = if_else(
-    region == "",
-    NA, 
-    region
-  ))
+  left_join(db5, by= "Country") %>% 
+  left_join(db6, by="ISO3")
 ```
 
 ```{r}
@@ -104,25 +99,33 @@ db <- db %>%
 ```
 
 ```{r}
+db <- db %>%
+  mutate(Continent = if_else(
+    Continent == "",
+    NA, 
+    Continent
+  ))
+```
+
+```{r}
 db <- db %>% 
-  rename("HDI_level" = "hdicode", "Region" = "region", "HDI_rank" = "hdi_rank_2021", 
+  rename("HDI_level" = "hdicode", "HDI_rank" = "hdi_rank_2021", 
          "CO2_prod" = "co2_prod_2021", "GNIPC" = "gnipc_2021", "HDI" = "hdi_2021", "Life_expect" 
          = "le_2021")
 ```
 
 ```{r}
 db <- db %>% 
-  select(1,2,4,3,5,8,6,7,9,10)
+  select(1,2,10,4,3,7,5,6,8,9)
 ```
 
 ```{r}
 db <- db %>% 
   mutate(HDI_level = factor(HDI_level, ordered = T, 
-                            levels = c("Low", "Medium", "High", "Very High")
-                            ), Region = factor(Region))
+                            levels = c("Low", "Medium", "High", "Very High")), 
+         Continent = factor(Continent))
 
 str(db)
-
 ```
 
 ## Correlación
