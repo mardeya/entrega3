@@ -102,11 +102,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>db2 <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"gross_national_income_per_capital.csv"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>db3 <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"human_development_index.csv"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>db4 <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"life_expectancy_by_birth.csv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>db5 <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"population.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>db5 <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"population.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>db6 <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"country_continent.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pot crear una funció per tal de no repetir 4 vegades el codi</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.3     ✔ readr     2.1.4
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db1 <span class="ot">&lt;-</span> db1 <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, co2_prod_2021) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span>, co2_prod_2021) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(ISO3 <span class="sc">!=</span> <span class="st">""</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>db2 <span class="ot">&lt;-</span> db2 <span class="sc">%&gt;%</span> </span>
@@ -138,7 +138,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>db5 <span class="ot">&lt;-</span> db5 <span class="sc">%&gt;%</span> </span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country =</span> Country.name) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Country, Population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Country, Population)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>db6 <span class="ot">&lt;-</span> db6 <span class="sc">%&gt;%</span> </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(code_3, continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ISO3 =</span> code_3, <span class="at">Continent =</span> continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Junto las primeras tablas</span></span>
@@ -152,16 +156,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">27</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">23</span>, <span class="st">"Country"</span>]   <span class="co"># Bolivia</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">33</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">26</span>, <span class="st">"Country"</span>]   <span class="co"># Brunei</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>db[<span class="dv">34</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db5[<span class="dv">51</span>, <span class="st">"Country"</span>]   <span class="co"># Costa d'Ivoire</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>db[<span class="dv">34</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db5[<span class="dv">51</span>, <span class="st">"Country"</span>]   <span class="co"># Costa de marfil</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">57</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">36</span>, <span class="st">"Country"</span>]   <span class="co"># Rep. Congo</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">40</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">40</span>, <span class="st">"Country"</span>]   <span class="co"># Cabo Verde</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">149</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">60</span>, <span class="st">"Country"</span>]  <span class="co"># Micronesia</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">98</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">73</span>, <span class="st">"Country"</span>]   <span class="co"># Hong Kong</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">103</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">81</span>, <span class="st">"Country"</span>]  <span class="co"># Iran</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>db[<span class="dv">95</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db5[<span class="dv">215</span>, <span class="st">"Country"</span>]  <span class="co"># Korea del Sud</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>db[<span class="dv">95</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db5[<span class="dv">215</span>, <span class="st">"Country"</span>]  <span class="co"># Corea del Sur</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">120</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">97</span>, <span class="st">"Country"</span>]  <span class="co"># Laos</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">150</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">110</span>, <span class="st">"Country"</span>] <span class="co"># Moldova</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>db[<span class="dv">143</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db5[<span class="dv">169</span>, <span class="st">"Country"</span>] <span class="co"># Korea del Norte</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>db[<span class="dv">143</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db5[<span class="dv">169</span>, <span class="st">"Country"</span>] <span class="co"># Corea del Norte</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">178</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">146</span>, <span class="st">"Country"</span>] <span class="co"># Palestina</span></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">190</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">149</span>, <span class="st">"Country"</span>] <span class="co"># Russia</span></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>db5[<span class="dv">69</span>, <span class="st">"Country"</span>] <span class="ot">&lt;-</span> db[<span class="dv">167</span>, <span class="st">"Country"</span>]  <span class="co"># Eswatini</span></span>
@@ -176,48 +180,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data final</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(db5, <span class="at">by=</span> <span class="st">"Country"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(db5, <span class="at">by=</span> <span class="st">"Country"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(db6, <span class="at">by=</span><span class="st">"ISO3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">if_else</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    region <span class="sc">==</span> <span class="st">""</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hdicode =</span> <span class="fu">if_else</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    hdicode <span class="sc">==</span> <span class="st">""</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>, </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    region</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    hdicode</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hdicode =</span> <span class="fu">if_else</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    hdicode <span class="sc">==</span> <span class="st">""</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Continent =</span> <span class="fu">if_else</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    Continent <span class="sc">==</span> <span class="st">""</span>,</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>, </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    hdicode</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    Continent</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"HDI_level"</span> <span class="ot">=</span> <span class="st">"hdicode"</span>, <span class="st">"Region"</span> <span class="ot">=</span> <span class="st">"region"</span>, <span class="st">"HDI_rank"</span> <span class="ot">=</span> <span class="st">"hdi_rank_2021"</span>, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"HDI_level"</span> <span class="ot">=</span> <span class="st">"hdicode"</span>, <span class="st">"HDI_rank"</span> <span class="ot">=</span> <span class="st">"hdi_rank_2021"</span>, </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">"CO2_prod"</span> <span class="ot">=</span> <span class="st">"co2_prod_2021"</span>, <span class="st">"GNIPC"</span> <span class="ot">=</span> <span class="st">"gnipc_2021"</span>, <span class="st">"HDI"</span> <span class="ot">=</span> <span class="st">"hdi_2021"</span>, <span class="st">"Life_expect"</span> </span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         <span class="ot">=</span> <span class="st">"le_2021"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HDI_level =</span> <span class="fu">factor</span>(HDI_level, <span class="at">ordered =</span> T, </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>, <span class="st">"Very High"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                            ), <span class="at">Region =</span> <span class="fu">factor</span>(Region))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>, <span class="st">"Very High"</span>)), </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Continent =</span> <span class="fu">factor</span>(Continent))</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(db)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   195 obs. of  10 variables:
  $ ISO3       : chr  "AFG" "AGO" "ALB" "AND" ...
  $ Country    : chr  "Afghanistan" "Angola" "Albania" "Andorra" ...
- $ Region     : Factor w/ 6 levels "AS","EAP","ECA",..: 5 6 3 NA 1 4 3 4 NA NA ...
- $ HDI_level  : Ord.factor w/ 4 levels "Low"&lt;"Medium"&lt;..: 1 2 3 4 4 4 3 3 4 4 ...
+ $ Continent  : Factor w/ 5 levels "Africa","Americas",..: 3 1 4 4 3 2 3 2 5 4 ...
  $ HDI_rank   : int  180 148 67 40 26 47 85 71 5 25 ...
+ $ HDI_level  : Ord.factor w/ 4 levels "Low"&lt;"Medium"&lt;..: 1 2 3 4 4 4 3 3 4 4 ...
  $ HDI        : num  0.478 0.586 0.796 0.858 0.911 0.842 0.759 0.788 0.951 0.916 ...
  $ CO2_prod   : num  0.312 0.675 1.576 6.035 15.193 ...
  $ GNIPC      : num  1824 5466 14131 51167 62574 ...
@@ -225,27 +230,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  $ Population : num  40099460 34503776 2854710 79057 9365149 ...</code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(db, <span class="st">"dataset_tidy.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="correlación" class="level2">
 <h2 class="anchored" data-anchor-id="correlación">Correlación</h2>
 <p>La matriz de correlación es la siguiente</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggcorrplot"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>db <span class="sc">%&gt;%</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(HDI, CO2_prod, GNIPC, Life_expect, Population) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  na.omit <span class="sc">%&gt;%</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  cor <span class="sc">%&gt;%</span> </span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggcorrplot</span>(<span class="at">hc.order=</span><span class="cn">TRUE</span>,<span class="at">type=</span><span class="st">"lower"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggcorrplot"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>db <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(HDI, CO2_prod, GNIPC, Life_expect, Population) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  na.omit <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  cor <span class="sc">%&gt;%</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggcorrplot</span>(<span class="at">hc.order=</span><span class="cn">TRUE</span>,<span class="at">type=</span><span class="st">"lower"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="data_tidy_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="data_tidy_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>db <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(HDI, CO2_prod, GNIPC, Life_expect, Population) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  na.omit <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  cor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>db <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(HDI, CO2_prod, GNIPC, Life_expect, Population) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  na.omit <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  cor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    HDI    CO2_prod       GNIPC Life_expect   Population
 HDI          1.00000000 0.547878460  0.78733738 0.905749235 -0.017826662
@@ -253,6 +261,14 @@ CO2_prod     0.54787846 1.000000000  0.57805431 0.457364600  0.005138611
 GNIPC        0.78733738 0.578054315  1.00000000 0.732849033 -0.041735536
 Life_expect  0.90574924 0.457364600  0.73284903 1.000000000  0.004751664
 Population  -0.01782666 0.005138611 -0.04173554 0.004751664  1.000000000</code></pre>
+</div>
+</div>
+</section>
+<section id="radar-charts" class="level1">
+<h1>Radar charts</h1>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_tidy_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
