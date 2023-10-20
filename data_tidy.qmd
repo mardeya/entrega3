@@ -163,7 +163,7 @@ db %>%
   group_by(Continent) %>% 
   summarise(mean_HDI=mean(HDI, na.rm = TRUE)) %>% 
   pivot_wider(names_from = Continent, values_from = mean_HDI) %>% 
-  rbind(rep(1,5), rep(0,5),.) %>% 
+  rbind(rep(1,5), rep(0.3,5),.) %>% 
   radarchart(title = "Media del HDMI por continentes", cglty = 1, cglcol = "gray",
            pcol = 4, plwd = 2,
            pfcol = rgb(0, 0.4, 1, 0.25), vlcex = 0.8)
@@ -198,4 +198,36 @@ db %>%
   radarchart(title = "Media del PIB por continentes", cglty = 1, cglcol = "grey",
            pcol = 3, plwd = 2,
            pfcol = rgb(0.4, 1, 0, 0.25), vlcex = 0.8)
+```
+
+
+
+```{r}
+library(fmsb)
+
+db %>% 
+  select(Continent,Life_expect) %>% 
+  group_by(Continent) %>% 
+  summarise(mean_Life=mean(Life_expect, na.rm = TRUE)) %>% 
+  pivot_wider(names_from = Continent, values_from = mean_Life) %>% 
+  rbind(rep(90,5), rep(60,5),.) %>% 
+  radarchart(title = "Media de la esperanza de vida por continentes", cglty = 1, cglcol = "grey",
+           pcol = 7, plwd = 2,
+           pfcol = rgb(1, 1, 0, 0.25), vlcex = 0.8)
+```
+
+
+
+```{r}
+library(fmsb)
+
+db %>% 
+  select(Continent,Population) %>% 
+  group_by(Continent) %>% 
+  summarise(mean_Population=mean(Population, na.rm = TRUE)) %>% 
+  pivot_wider(names_from = Continent, values_from = mean_Population) %>% 
+  rbind(rep(150000000,5), rep(1000,5),.) %>% 
+  radarchart(title = "Media de la población por continentes", cglty = 1, cglcol = "grey",
+           pcol = 14, plwd = 2,
+           pfcol = rgb(1, 0, 1, 0.25), vlcex = 0.8)
 ```
