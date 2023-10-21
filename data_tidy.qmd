@@ -128,9 +128,17 @@ db <- db %>%
 str(db)
 ```
 
-
 ```{r}
 write.csv(db, "dataset_tidy.csv", row.names = FALSE)
+```
+
+## Análisis multivariante
+
+```{r}
+library("GGally")
+a <- db %>% select(c(3, 6, 7, 8, 9, 10)) %>% na.omit
+
+a %>% ggpairs(aes(color=a$Continent, alpha=0.4), color = c("black", "red", "yellow", "green", "blue"))
 ```
 
 ## Correlación
@@ -155,8 +163,7 @@ db %>%
 
 ```
 
-
-# Radar charts 
+# Radar charts
 
 ```{r, echo = FALSE}
 library(fmsb)
