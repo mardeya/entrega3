@@ -33,6 +33,7 @@ Además, hemos complementado nuestra base con otros datos que nos ofrecían info
 ## Resumen del problema
 
 Nuestro estudio 
+
 ## Proceso de limpieza de los datos
 
 ```{r, echo = FALSE}
