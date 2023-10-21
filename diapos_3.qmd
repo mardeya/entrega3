@@ -6,12 +6,25 @@ editor: visual
 
 ## Índice
 
-- Introducción
-- 
-- Análisi multivariante
+- Fuente de datos
+- Resumen del problema
+- Proceso de limpieza de los datos
+- Análisis multivariante
+- Estimación del vector de medias
 - Matriz de correlaciones
+- Contrastes de correlación
+- Conclusiones
 
 
-## Introducción
+## Fuente de datos
 
 Hemos .. de la siguiente página web:
+
+## Resumen del problema
+
+## Proceso de limpieza de los datos
+
+```{r, echo = False}
+read.csv("dataset_tidy.csv")
+```
+
