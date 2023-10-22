@@ -9,8 +9,8 @@ editor: visual
 - Fuente de datos
 - Resumen del problema
 - Proceso de limpieza de los datos
+- Variables de nuestra base de datos
 - Análisis multivariante
-- Comparación de las variables respecto a los continentes
 - Estimación del vector de medias
 - Matriz de correlaciones
 - Contrastes de correlación
@@ -40,6 +40,17 @@ El objetivo de nuestro estudio es encontrar relaciones entre los indicadores soc
 
 ## Proceso de limpieza de los datos
 
+<div style="text-align:center;">
+![](imagen3.jpg){width=40%}
+</div>
+
+- Hemos juntado las 6 tablas usando la función _left_join_ gracias a la clave primaria _ISO3_
+- Hemos convertido las variables _Continente_ y _HDI_level_ en factores. La segunda de ellas ordenado
+- Además hemos cambiado el nombre de algunas variables para mejorar su comprensión
+
+
+## Variables de nuestra base de datos
+
 ```{r, echo = FALSE}
 library(tidyverse)
 db = read.csv("dataset_tidy.csv") 
@@ -50,10 +61,6 @@ db <- db %>%
 
 str(db)
 ```
-
-- Hemos juntado las 6 tablas usando la función _left_join_ gracias a la clave primaria _ISO3_
-- Hemos convertido las variables _Continente_ y _HDI_level_ en factores. La segunda de ellas ordenado
-- Además hemos cambiado el nombre de algunas variables para mejorar su comprensión
 
 ## Análisis multivariante
 

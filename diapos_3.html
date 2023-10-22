@@ -336,8 +336,8 @@
 <li>Fuente de datos</li>
 <li>Resumen del problema</li>
 <li>Proceso de limpieza de los datos</li>
+<li>Variables de nuestra base de datos</li>
 <li>Análisis multivariante</li>
-<li>Comparación de las variables respecto a los continentes</li>
 <li>Estimación del vector de medias</li>
 <li>Matriz de correlaciones</li>
 <li>Contrastes de correlación</li>
@@ -361,6 +361,17 @@
 </section>
 <section id="proceso-de-limpieza-de-los-datos" class="slide level2">
 <h2>Proceso de limpieza de los datos</h2>
+<div style="text-align:center;">
+<p><img data-src="imagen3.jpg" style="width:40.0%"></p>
+</div>
+<ul>
+<li>Hemos juntado las 6 tablas usando la función <em>left_join</em> gracias a la clave primaria <em>ISO3</em></li>
+<li>Hemos convertido las variables <em>Continente</em> y <em>HDI_level</em> en factores. La segunda de ellas ordenado</li>
+<li>Además hemos cambiado el nombre de algunas variables para mejorar su comprensión</li>
+</ul>
+</section>
+<section id="variables-de-nuestra-base-de-datos" class="slide level2">
+<h2>Variables de nuestra base de datos</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   195 obs. of  10 variables:
@@ -376,11 +387,6 @@
  $ Population : int  40099460 34503776 2854710 79057 9365149 45276788 2790971 93229 25921094 8922086 ...</code></pre>
 </div>
 </div>
-<ul>
-<li>Hemos juntado las 6 tablas usando la función <em>left_join</em> gracias a la clave primaria <em>ISO3</em></li>
-<li>Hemos convertido las variables <em>Continente</em> y <em>HDI_level</em> en factores. La segunda de ellas ordenado</li>
-<li>Además hemos cambiado el nombre de algunas variables para mejorar su comprensión</li>
-</ul>
 </section>
 <section id="análisis-multivariante" class="slide level2">
 <h2>Análisis multivariante</h2>
