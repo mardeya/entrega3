@@ -1,5 +1,4 @@
 ---
----
 title: "Relación entre los indicadores sociales, económicos y ambientales alrededor del mundo"
 format: revealjs
 editor: visual
@@ -32,7 +31,12 @@ Además, hemos complementado nuestra base con otros datos que nos ofrecían info
 
 ## Resumen del problema
 
-Nuestro estudio  
+El objetivo de nuestro estudio es encontrar relaciones entre los indicadores sociales, econónimos y ambientales de los diferentes países de nuestro planeta. Además, queremos estudiar las diferencias entre los distintos continentes.
+
+<div style="text-align:center;">
+![](imagen2.jpg){width=80%}
+</div>
+
 
 ## Proceso de limpieza de los datos
 
