@@ -369,6 +369,58 @@ a %>% ggpairs(aes(color=a$Continent, alpha=0.4)) +
 ```
 
 
+## Contraste de correlación
+
+```{r}
+kruskal.test(db$HDI~db$Continent)
+kruskal.test(db$CO2_prod~db$Continent)
+kruskal.test(db$GNIPC~db$Continent)
+```
+
+## Contraste de correlación
+
+```{r}
+kruskal.test(db$Life_expect~db$Continent)
+kruskal.test(db$Population~db$Continent)
+```
+
+
+## HDI
+
+```{r, warning=FALSE}
+pairwise.wilcox.test(db$HDI, db$Continent, paired=FALSE,
+                     p.adjust.method="bonferroni")
+```
+
+## Producción de CO2
+
+```{r, warning=FALSE}
+pairwise.wilcox.test(db$CO2_prod, db$Continent, paired=FALSE,
+                     p.adjust.method="bonferroni")
+```
+
+## PIB
+
+```{r, warning=FALSE}
+pairwise.wilcox.test(db$GNIPC, db$Continent, paired=FALSE,
+                     p.adjust.method="bonferroni")
+```
+
+## Esperanza de vida
+
+```{r, warning=FALSE}
+pairwise.wilcox.test(db$Life_expect, db$Continent, paired=FALSE,
+                     p.adjust.method="bonferroni")
+```
+
+## Población
+
+```{r, warning=FALSE}
+pairwise.wilcox.test(db$Population , db$Continent, paired=FALSE,
+                     p.adjust.method="bonferroni")
+```
+
+
 ## Conclusiones
 
 
