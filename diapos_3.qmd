@@ -56,8 +56,10 @@ db <- db %>%
 
 str(db)
 ```
-- 
-- 5 variables cuantitativas
+
+- 1 variable ordinal: _HDI_rank_, _HDI_level_
+- 1 variable nominal: _Country_, _Continent_
+- 5 variables cuantitativas:  _HDI_, _CO2_prod_, _GNIPC_, _Life_expect_, _Population_
 
 ## Análisis multivariante
 
