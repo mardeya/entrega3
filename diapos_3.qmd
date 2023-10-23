@@ -17,7 +17,6 @@ editor: source
 
 ## Índice
 
-
 -   Fuente de datos
 -   Resumen del problema
 -   Proceso de limpieza de los datos
@@ -27,8 +26,6 @@ editor: source
 -   Matriz de correlaciones
 -   Contrastes de correlación
 -   Conclusiones
-
-
 
 ## Fuente de datos
 
@@ -71,10 +68,9 @@ db <- db %>%
 str(db)
 ```
 
-- 2 variables ordinales: _HDI_rank_, _HDI_level_.
-- 2 variables nominales: _Country_, _Continent_.
-- 5 variables cuantitativas:  _HDI_, _CO2_prod_, _GNIPC_, _Life_expect_, _Population_.
-
+-   2 variables ordinales: *HDI_rank*, *HDI_level*.
+-   2 variables nominales: *Country*, *Continent*.
+-   5 variables cuantitativas: *HDI*, *CO2_prod*, *GNIPC*, *Life_expect*, *Population*.
 
 ## Comparación de las variables respecto a los continentes
 
@@ -137,7 +133,6 @@ db %>%
 
 ```
 
-
 ## Correlación
 
 ```{r}
@@ -150,17 +145,27 @@ db %>%
   ggcorrplot(hc.order=TRUE,type="lower")
 ```
 
-
-
 ## Análisis multivariante
 
 ```{r, echo=FALSE}
 library("GGally")
+
+log10_vars <- vars(ends_with("Population"))
+
 a <- db %>% select(c(3, 6, 7, 8, 9, 10)) %>% na.omit
+
+a$Population <- log10(a$Population)
+a <- a %>% rename_at(log10_vars, sprintf, fmt="log10(%s)")
 
 continent_colors <- c("black", "red", "yellow", "green", "blue")
 
 a %>% ggpairs(aes(color=a$Continent, alpha=0.4)) +
   scale_fill_manual(values = continent_colors) +
   scale_color_manual(values = continent_colors)
+
+# subplot <- getPlot(p, 1, 6)
+# subplotNew <- subplot + scale_y_log10()
+# subplotNew$type <- "logcontinuous"
+# subplotNew$subType <- "logpoints"
+# p <- putPlot(p, subplotNew, 1, 6)
 ```
