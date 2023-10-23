@@ -39,13 +39,15 @@ Además, hemos complementado nuestra base con otros datos que nos ofrecían info
 
 ## Resumen del problema
 
-El objetivo de nuestro estudio es encontrar relaciones entre los indicadores sociales, econónimos y ambientales de los diferentes países de nuestro planeta.
+El objetivo de nuestro estudio es encontrar relaciones entre los indicadores sociales, econónimos y ambientales de los diferentes países de nuestro planeta. Concretamente, creemos interesante estudiar:
 
--   Relación entre HDI y producción de $CO_2$.
+-   La relación entre HDI y producción de $CO_2$.
 
--   Relación entre GNIPC y esperanza de vida.
+-   La relación entre GNIPC y esperanza de vida.
 
--   Relación entre $CO_2$ y esperanza de vida.
+-   La relación entre $CO_2$ y esperanza de vida.
+
+Adicionalmente, sospechamos que existirán diferencias significativas entre las distintas variables cuantitativas por continente.
 
 ::: {style="text-align:center;"}
 ![](imagen2.jpg){width="30%"}
