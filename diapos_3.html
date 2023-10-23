@@ -374,9 +374,9 @@ Toni Fuentes Bauzà
 <h2>Resumen del problema</h2>
 <p>El objetivo de nuestro estudio es encontrar relaciones entre los indicadores sociales, econónimos y ambientales de los diferentes países de nuestro planeta.</p>
 <ul>
-<li><p>Relación entre HDI y producción de CO2.</p></li>
+<li><p>Relación entre HDI y producción de <span class="math inline">\(CO_2\)</span>.</p></li>
 <li><p>Relación entre GNIPC y esperanza de vida.</p></li>
-<li><p>Relación entre CO2 y esperanza de vida.</p></li>
+<li><p>Relación entre <span class="math inline">\(CO_2\)</span> y esperanza de vida.</p></li>
 </ul>
 <div style="text-align:center;">
 <p><img data-src="imagen2.jpg" style="width:30.0%"></p>
@@ -475,11 +475,11 @@ Toni Fuentes Bauzà
 <section id="comparación-de-las-variables-respecto-a-los-continentes" class="slide level2">
 <h2>Comparación de las variables respecto a los continentes</h2>
 
-<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="correlación" class="slide level2">
 <h2>Correlación</h2>
 
-<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="matriz-de-correlaciones" class="slide level2">
 <h2>Matriz de correlaciones</h2>
 <div class="cell">
@@ -496,7 +496,147 @@ Population  -0.01782666 0.005138611 -0.04173554 0.004751664  1.000000000</code><
 <section id="análisis-multivariante" class="slide level2">
 <h2>Análisis multivariante</h2>
 
-<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
+<section id="contraste-de-correlación" class="slide level2">
+<h2>Contraste de correlación</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  db$HDI by db$Continent
+Kruskal-Wallis chi-squared = 110.3, df = 4, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  db$CO2_prod by db$Continent
+Kruskal-Wallis chi-squared = 79.82, df = 4, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  db$GNIPC by db$Continent
+Kruskal-Wallis chi-squared = 99.613, df = 4, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="contraste-de-correlación-1" class="slide level2">
+<h2>Contraste de correlación</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  db$Life_expect by db$Continent
+Kruskal-Wallis chi-squared = 105.91, df = 4, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  db$Population by db$Continent
+Kruskal-Wallis chi-squared = 29.03, df = 4, p-value = 7.71e-06</code></pre>
+</div>
+</div>
+</section>
+<section id="hdi" class="slide level2">
+<h2>HDI</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  db$HDI and db$Continent 
+
+         Africa  Americas Asia    Europe 
+Americas 4.9e-10 -        -       -      
+Asia     1.9e-09 1.00000  -       -      
+Europe   1.5e-15 1.3e-08  5.2e-07 -      
+Oceania  0.00324 0.48592  1.00000 0.00071
+
+P value adjustment method: bonferroni </code></pre>
+</div>
+</div>
+</section>
+<section id="producción-de-co2" class="slide level2">
+<h2>Producción de CO2</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  db$CO2_prod and db$Continent 
+
+         Africa  Americas Asia   Europe
+Americas 4.9e-07 -        -      -     
+Asia     1.8e-09 1.0000   -      -     
+Europe   2.3e-12 1.6e-06  0.7730 -     
+Oceania  0.0082  1.0000   1.0000 0.0332
+
+P value adjustment method: bonferroni </code></pre>
+</div>
+</div>
+</section>
+<section id="pib" class="slide level2">
+<h2>PIB</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  db$GNIPC and db$Continent 
+
+         Africa  Americas Asia    Europe 
+Americas 1.9e-08 -        -       -      
+Asia     7.1e-08 1.000    -       -      
+Europe   3.0e-15 2.5e-09  1.1e-05 -      
+Oceania  0.089   0.151    0.491   9.9e-06
+
+P value adjustment method: bonferroni </code></pre>
+</div>
+</div>
+</section>
+<section id="esperanza-de-vida" class="slide level2">
+<h2>Esperanza de vida</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  db$Life_expect and db$Continent 
+
+         Africa  Americas Asia    Europe 
+Americas 2.6e-09 -        -       -      
+Asia     9.7e-12 1.00000  -       -      
+Europe   7.4e-15 8.4e-07  8.7e-05 -      
+Oceania  0.00145 0.29763  0.18111 0.00025
+
+P value adjustment method: bonferroni </code></pre>
+</div>
+</div>
+</section>
+<section id="población" class="slide level2">
+<h2>Población</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  db$Population and db$Continent 
+
+         Africa  Americas Asia    Europe 
+Americas 0.67726 -        -       -      
+Asia     1.00000 0.17754  -       -      
+Europe   0.49492 1.00000  0.08314 -      
+Oceania  0.00011 0.01886  5.1e-06 0.00511
+
+P value adjustment method: bonferroni </code></pre>
+</div>
+</div>
+</section>
 <section id="conclusiones" class="slide level2">
 <h2>Conclusiones</h2>
 <div class="footer footer-default">
