@@ -227,3 +227,6 @@ a %>% ggpairs(aes(color=a$Continent, alpha=0.4)) +
 
 
 ## Conclusiones
+
+
+
