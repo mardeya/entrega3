@@ -387,3 +387,30 @@ pairwise.wilcox.test(db$Population , db$Continent, paired=FALSE,
 
 
 ## Conclusiones
+
+Para responder a las preguntas, puede ser de ayuda observar las covarianzas entre las distintas variables.
+
+Entre el HDI y producción de $CO_2$:
+```{r}
+subdf=na.omit(db %>% select("HDI","CO2_prod"))
+
+cov(subdf$HDI,subdf$CO2_prod)
+```
+
+Podemos decir que hay asociación positiva pero baja correlación.
+
+```{r}
+subdf=na.omit(db %>% select("GNIPC","Life_expect"))
+
+cov(subdf$GNIPC,subdf$Life_expect)
+```
+
+Hay tanto asociación como correlación positiva.
+
+```{r}
+subdf=na.omit(db %>% select("Life_expect","CO2_prod"))
+
+cov(subdf$Life_expect,subdf$CO2_prod)
+```
+
+Hay cierta asociación positiva, pero la correlación es baja.
