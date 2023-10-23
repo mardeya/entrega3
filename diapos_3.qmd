@@ -52,7 +52,7 @@ El objetivo de nuestro estudio es encontrar relaciones entre los indicadores soc
 :::
 
 -   Hemos juntado las 6 tablas usando la función *left_join* gracias a la clave primaria *ISO3*.
--   Hemos convertido las variables *Continente* y *HDI_level* en factores. La segunda de ellas ordenado.
+-   Hemos convertido las variables *Continente* y *HDI_level* en factores. La segunda de ellas en un factor ordenado.
 -   Además hemos cambiado el nombre de algunas variables para mejorar su comprensión.
 
 ## Variables de nuestra base de datos
