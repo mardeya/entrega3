@@ -486,7 +486,9 @@ ggplot(db, aes(x = Continent, y = Population, fill = Continent)) +
 
 ## Conclusiones
 
-Para responder a las preguntas, puede ser de ayuda observar las covarianzas entre las distintas variables.
+Podemos afirmar que sí hay diferencias entre las métricas de los distintos continentes, pero para realizar un análisis sistemático de ello necesitamos herramientas estadísticas más potentes de las que disponemos.
+
+Para responder a las demás preguntas, puede ser de ayuda observar las covarianzas entre las distintas variables.
 
 Entre el HDI y producción de $CO_2$:
 ```{r}
