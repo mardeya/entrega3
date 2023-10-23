@@ -61,6 +61,8 @@ db <- db %>%
 
 str(db)
 ```
+- 
+- 5 variables cuantitativas
 
 ## Análisis multivariante
 
