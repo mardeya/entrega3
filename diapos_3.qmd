@@ -21,10 +21,10 @@ editor: source
 -   Resumen del problema
 -   Proceso de limpieza de los datos
 -   Variables de nuestra base de datos
--   Análisis multivariante
 -   Estimación del vector de medias
 -   Matriz de correlaciones
 -   Contrastes de correlación
+-   Análisis multivariante
 -   Conclusiones
 
 ## Fuente de datos
@@ -176,3 +176,6 @@ a %>% ggpairs(aes(color=a$Continent, alpha=0.4)) +
 # subplotNew$subType <- "logpoints"
 # p <- putPlot(p, subplotNew, 1, 6)
 ```
+
+
+## Conclusiones
