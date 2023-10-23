@@ -140,6 +140,46 @@ db %>%
 
 ```
 
+## Vectores de medias
+
+Media y vector de medias del HDI por continente:
+
+```{r}
+mean(db$HDI %>% na.omit)
+tapply(db$HDI, db$Continent, mean, na.rm = TRUE)
+```
+
+Media y vector de medias de la producción de $CO_2$ por continente:
+
+```{r}
+mean(db$CO2_prod %>% na.omit)
+tapply(db$CO2_prod, db$Continent, mean, na.rm = TRUE)
+```
+
+Media y vector de medias de la producción del PIB por continente:
+
+```{r}
+mean(db$GNIPC %>% na.omit)
+tapply(db$GNIPC, db$Continent, mean, na.rm = TRUE)
+```
+
+## Vectores de medias
+
+Media y vector de medias de la producción de la esperanza de vida por continente:
+
+```{r}
+mean(db$Life_expect %>% na.omit)
+tapply(db$Life_expect, db$Continent, mean, na.rm = TRUE)
+```
+
+Media y vector de medias de la producción de la población por continente:
+
+```{r}
+mean(db$Population %>% na.omit)
+tapply(db$Population, db$Continent, mean, na.rm = TRUE)
+```
+
+
 ## Correlación
 
 ```{r}
@@ -151,6 +191,16 @@ db %>%
   cor %>% 
   ggcorrplot(hc.order=TRUE,type="lower")
 ```
+
+## Matriz de correlaciones
+
+```{r}
+db %>% 
+  select(HDI, CO2_prod, GNIPC, Life_expect, Population) %>% 
+  na.omit %>%
+  cor
+```
+
 
 ## Análisis multivariante
 
