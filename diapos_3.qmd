@@ -355,6 +355,7 @@ kruskal.test(db$Population~db$Continent)
 ```{r, warning=FALSE}
 pairwise.wilcox.test(db$HDI, db$Continent, paired=FALSE,
                      p.adjust.method="bonferroni")
+summary(db$HDI)
 ```
 
 ## Producción de CO2
@@ -362,6 +363,7 @@ pairwise.wilcox.test(db$HDI, db$Continent, paired=FALSE,
 ```{r, warning=FALSE}
 pairwise.wilcox.test(db$CO2_prod, db$Continent, paired=FALSE,
                      p.adjust.method="bonferroni")
+summary(db$CO2_prod)
 ```
 
 ## PIB
@@ -369,6 +371,7 @@ pairwise.wilcox.test(db$CO2_prod, db$Continent, paired=FALSE,
 ```{r, warning=FALSE}
 pairwise.wilcox.test(db$GNIPC, db$Continent, paired=FALSE,
                      p.adjust.method="bonferroni")
+summary(db$GNIPC)
 ```
 
 ## Esperanza de vida
@@ -376,6 +379,7 @@ pairwise.wilcox.test(db$GNIPC, db$Continent, paired=FALSE,
 ```{r, warning=FALSE}
 pairwise.wilcox.test(db$Life_expect, db$Continent, paired=FALSE,
                      p.adjust.method="bonferroni")
+summary(db$Life_expect)
 ```
 
 ## Población
@@ -383,6 +387,7 @@ pairwise.wilcox.test(db$Life_expect, db$Continent, paired=FALSE,
 ```{r, warning=FALSE}
 pairwise.wilcox.test(db$Population , db$Continent, paired=FALSE,
                      p.adjust.method="bonferroni")
+summary(db$Population)
 ```
 
 

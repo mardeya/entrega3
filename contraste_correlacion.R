@@ -30,3 +30,9 @@ contraste_correlacion<- function(df, continente,var1,k){
   print(nH1_var1)
   return (res_test_var1)
 }
+
+
+kruskal.test(db$Population~db$Continent)
+
+pairwise.wilcox.test(db$hdi_2021, db$Continent, paired=FALSE,
+                     p.adjust.method="bonferroni")
