@@ -10,6 +10,9 @@
 <link href="diapos_3_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.433">
 
+  <meta name="author" content="Frank William Hammond Espinosa">
+  <meta name="author" content="Maria del Mar Deyà Torrens">
+  <meta name="author" content="Toni Fuentes Bauzà">
   <title>Relación entre los indicadores sociales, económicos y ambientales alrededor del mundo</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -323,10 +326,25 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" data-background-image="imagentitulo.jpg" data-background-opacity="0.7" data-background-size="contain" class="quarto-title-block center">
   <h1 class="title">Relación entre los indicadores sociales, económicos y ambientales alrededor del mundo</h1>
 
 <div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Frank William Hammond Espinosa 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Maria del Mar Deyà Torrens 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Toni Fuentes Bauzà 
+</div>
+</div>
 </div>
 
 </section>
@@ -346,7 +364,7 @@
 </section>
 <section id="fuente-de-datos" class="slide level2">
 <h2>Fuente de datos</h2>
-<p>Hemos encontrado nuestra fuente de datos en este <a href="https://www.kaggle.com/datasets/toriqulstu/global-socio-economic-and-environmental-indicators">enlace</a> de la página web de <em>kaggle</em></p>
+<p>Hemos encontrado nuestra fuente de datos en este <a href="https://www.kaggle.com/datasets/toriqulstu/global-socio-economic-and-environmental-indicators">enlace</a> de la página web de <em>kaggle</em>.</p>
 <div style="text-align:center;">
 <p><img data-src="imagen1.png" style="width:50.0%"></p>
 </div>
@@ -356,7 +374,7 @@
 <h2>Resumen del problema</h2>
 <p>El objetivo de nuestro estudio es encontrar relaciones entre los indicadores sociales, econónimos y ambientales de los diferentes países de nuestro planeta. Además, queremos estudiar las diferencias entre los distintos continentes.</p>
 <div style="text-align:center;">
-<p><img data-src="imagen2.jpg" style="width:80.0%"></p>
+<p><img data-src="imagen2.jpg" style="width:60.0%"></p>
 </div>
 </section>
 <section id="proceso-de-limpieza-de-los-datos" class="slide level2">
@@ -365,9 +383,9 @@
 <p><img data-src="imagen3.jpg" style="width:40.0%"></p>
 </div>
 <ul>
-<li>Hemos juntado las 6 tablas usando la función <em>left_join</em> gracias a la clave primaria <em>ISO3</em></li>
-<li>Hemos convertido las variables <em>Continente</em> y <em>HDI_level</em> en factores. La segunda de ellas ordenado</li>
-<li>Además hemos cambiado el nombre de algunas variables para mejorar su comprensión</li>
+<li>Hemos juntado las 6 tablas usando la función <em>left_join</em> gracias a la clave primaria <em>ISO3</em>.</li>
+<li>Hemos convertido las variables <em>Continente</em> y <em>HDI_level</em> en factores. La segunda de ellas ordenado.</li>
+<li>Además hemos cambiado el nombre de algunas variables para mejorar su comprensión.</li>
 </ul>
 </section>
 <section id="variables-de-nuestra-base-de-datos" class="slide level2">
@@ -388,27 +406,23 @@
 </div>
 </div>
 <ul>
-<li>1 variable ordinal: <em>HDI_rank</em>, <em>HDI_level</em></li>
-<li>1 variable nominal: <em>Country</em>, <em>Continent</em></li>
-<li>5 variables cuantitativas: <em>HDI</em>, <em>CO2_prod</em>, <em>GNIPC</em>, <em>Life_expect</em>, <em>Population</em></li>
+<li>2 variables ordinales: <em>HDI_rank</em>, <em>HDI_level</em>.</li>
+<li>2 variables nominales: <em>Country</em>, <em>Continent</em>.</li>
+<li>5 variables cuantitativas: <em>HDI</em>, <em>CO2_prod</em>, <em>GNIPC</em>, <em>Life_expect</em>, <em>Population</em>.</li>
 </ul>
 </section>
-<section id="análisis-multivariante" class="slide level2">
-<h2>Análisis multivariante</h2>
+<section id="comparación-de-las-variables-respecto-a-los-continentes" class="slide level2">
+<h2>Comparación de las variables respecto a los continentes</h2>
 
 <img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
 <section id="correlación" class="slide level2">
 <h2>Correlación</h2>
 
 <img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="comparación-de-las-variables-respecto-a-los-continentes" class="slide level2">
-<h2>Comparación de las variables respecto a los continentes</h2>
+<section id="análisis-multivariante" class="slide level2">
+<h2>Análisis multivariante</h2>
 
-<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="comparación-de-las-variables-respecto-a-los-continentes-1" class="slide level2">
-<h2>Comparación de las variables respecto a los continentes</h2>
-
-<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"><div class="footer footer-default">
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"><div class="footer footer-default">
 
 </div>
 </section>
@@ -569,14 +583,14 @@
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'convex',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
+        backgroundTransition: 'fade',
 
         // Number of slides away from the current that are visible
         viewDistance: 3,

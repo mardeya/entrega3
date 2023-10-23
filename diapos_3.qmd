@@ -1,10 +1,22 @@
 ---
 title: "Relación entre los indicadores sociales, económicos y ambientales alrededor del mundo"
-format: revealjs
-editor: visual
+title-slide-attributes:
+  data-background-image: imagentitulo.jpg
+  data-background-size: contain
+  data-background-opacity: "0.7"
+author:
+  - Frank William Hammond Espinosa
+  - Maria del Mar Deyà Torrens
+  - Toni Fuentes Bauzà
+format: 
+  revealjs:
+    transition: convex
+    background-transition: fade
+editor: source
 ---
 
 ## Índice
+
 
 -   Fuente de datos
 -   Resumen del problema
@@ -16,9 +28,11 @@ editor: visual
 -   Contrastes de correlación
 -   Conclusiones
 
+
+
 ## Fuente de datos
 
-Hemos encontrado nuestra fuente de datos en este [enlace](https://www.kaggle.com/datasets/toriqulstu/global-socio-economic-and-environmental-indicators) de la página web de *kaggle*
+Hemos encontrado nuestra fuente de datos en este [enlace](https://www.kaggle.com/datasets/toriqulstu/global-socio-economic-and-environmental-indicators) de la página web de *kaggle*.
 
 ::: {style="text-align:center;"}
 ![](imagen1.png){width="50%"}
@@ -31,7 +45,7 @@ Además, hemos complementado nuestra base con otros datos que nos ofrecían info
 El objetivo de nuestro estudio es encontrar relaciones entre los indicadores sociales, econónimos y ambientales de los diferentes países de nuestro planeta. Además, queremos estudiar las diferencias entre los distintos continentes.
 
 ::: {style="text-align:center;"}
-![](imagen2.jpg){width="80%"}
+![](imagen2.jpg){width="60%"}
 :::
 
 ## Proceso de limpieza de los datos
@@ -40,9 +54,9 @@ El objetivo de nuestro estudio es encontrar relaciones entre los indicadores soc
 ![](imagen3.jpg){width="40%"}
 :::
 
--   Hemos juntado las 6 tablas usando la función *left_join* gracias a la clave primaria *ISO3*
--   Hemos convertido las variables *Continente* y *HDI_level* en factores. La segunda de ellas ordenado
--   Además hemos cambiado el nombre de algunas variables para mejorar su comprensión
+-   Hemos juntado las 6 tablas usando la función *left_join* gracias a la clave primaria *ISO3*.
+-   Hemos convertido las variables *Continente* y *HDI_level* en factores. La segunda de ellas ordenado.
+-   Además hemos cambiado el nombre de algunas variables para mejorar su comprensión.
 
 ## Variables de nuestra base de datos
 
@@ -57,34 +71,9 @@ db <- db %>%
 str(db)
 ```
 
-- 1 variable ordinal: _HDI_rank_, _HDI_level_
-- 1 variable nominal: _Country_, _Continent_
-- 5 variables cuantitativas:  _HDI_, _CO2_prod_, _GNIPC_, _Life_expect_, _Population_
-
-## Análisis multivariante
-
-```{r, echo=FALSE}
-library("GGally")
-a <- db %>% select(c(3, 6, 7, 8, 9, 10)) %>% na.omit
-
-continent_colors <- c("black", "red", "yellow", "green", "blue")
-
-a %>% ggpairs(aes(color=a$Continent, alpha=0.4)) +
-  scale_fill_manual(values = continent_colors) +
-  scale_color_manual(values = continent_colors)
-```
-
-## Correlación
-
-```{r}
-library("ggcorrplot")
-
-db %>% 
-  select(HDI, CO2_prod, GNIPC, Life_expect, Population) %>% 
-  na.omit %>%
-  cor %>% 
-  ggcorrplot(hc.order=TRUE,type="lower")
-```
+- 2 variables ordinales: _HDI_rank_, _HDI_level_.
+- 2 variables nominales: _Country_, _Continent_.
+- 5 variables cuantitativas:  _HDI_, _CO2_prod_, _GNIPC_, _Life_expect_, _Population_.
 
 
 ## Comparación de las variables respecto a los continentes
@@ -92,7 +81,7 @@ db %>%
 ```{r, echo = FALSE}
 library(fmsb)
 
-layout(matrix(c(1,2,3), nrow = 1, byrow = TRUE))
+layout(matrix(c(1,1,2, 2,3, 3, 4,4,4, 5,5,5), nrow = 2, byrow = TRUE))
 
 db %>% 
   select(Continent,HDI) %>% 
@@ -100,7 +89,7 @@ db %>%
   summarise(mean_HDI=mean(HDI, na.rm = TRUE)) %>% 
   pivot_wider(names_from = Continent, values_from = mean_HDI) %>% 
   rbind(rep(1,5), rep(0.3,5),.) %>% 
-  radarchart(title = "Media del HDMI", cglty = 1, cglcol = "gray",
+  radarchart(title = "Media del HDI", cglty = 1, cglcol = "gray",
            pcol = 4, plwd = 2,
            pfcol = rgb(0, 0.4, 1, 0.25), vlcex = 0.8)
 
@@ -124,14 +113,6 @@ db %>%
            pcol = 3, plwd = 2,
            pfcol = rgb(0.4, 1, 0, 0.25), vlcex = 0.8)
 
-
-```
-
-## Comparación de las variables respecto a los continentes
-
-```{r, echo = FALSE}
-
-layout(matrix(c(1,2), nrow = 1, byrow = TRUE))
 db %>% 
   select(Continent,Life_expect) %>% 
   group_by(Continent) %>% 
@@ -154,4 +135,32 @@ db %>%
            pfcol = rgb(1, 0, 1, 0.25), vlcex = 0.8)
 
 
+```
+
+
+## Correlación
+
+```{r}
+library("ggcorrplot")
+
+db %>% 
+  select(HDI, CO2_prod, GNIPC, Life_expect, Population) %>% 
+  na.omit %>%
+  cor %>% 
+  ggcorrplot(hc.order=TRUE,type="lower")
+```
+
+
+
+## Análisis multivariante
+
+```{r, echo=FALSE}
+library("GGally")
+a <- db %>% select(c(3, 6, 7, 8, 9, 10)) %>% na.omit
+
+continent_colors <- c("black", "red", "yellow", "green", "blue")
+
+a %>% ggpairs(aes(color=a$Continent, alpha=0.4)) +
+  scale_fill_manual(values = continent_colors) +
+  scale_color_manual(values = continent_colors)
 ```
