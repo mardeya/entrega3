@@ -212,14 +212,14 @@ tapply(db$GNIPC, db$Continent, mean, na.rm = TRUE)
 
 ## Vectores de medias
 
-Media y vector de medias de la producción de la esperanza de vida por continente:
+Media y vector de medias de la esperanza de vida por continente:
 
 ```{r}
 mean(db$Life_expect %>% na.omit)
 tapply(db$Life_expect, db$Continent, mean, na.rm = TRUE)
 ```
 
-Media y vector de medias de la producción de la población por continente:
+Media y vector de medias de la población por continente:
 
 ```{r}
 mean(db$Population %>% na.omit)
@@ -333,6 +333,40 @@ a %>% ggpairs(aes(color=a$Continent, alpha=0.4)) +
 # p <- putPlot(p, subplotNew, 1, 6)
 ```
 
+## Bootstrap
+
+```{r, echo=TRUE, eval=FALSE}
+contraste_correlacion<- function(df, continente,var1,k){  
+  # Contrastes a realizar, para var1 y var2:
+  # H0: corr_continente=corr_global
+  # H1: corr_continente!=corr_global
+  
+  df<-df %>% select(c("Continent",var1))
+  filter(df,Continent==continente)[,var1] -> continente_df_var1
+  num_paises_cont=table(df$Continent)[continente]
+  n=nrow(df)
+  
+  sample_df=sample_n(df,num_paises_cont,replace=FALSE)
+  
+  nH1_var1=0
+  
+  for (x in 1:k){
+    set.seed(x)
+    
+    sample_df=sample_n(df,num_paises_cont,replace=FALSE)
+    
+    # Test de correlacion
+    # var1
+    pval_var1=cor.test(sample_df[,var1],continente_df_var1)$p.value
+    if (pval_var1<0.05){nH1_var1=nH1_var1+1}
+  }
+  res_test_var1=(nH1_var1<(3/4)*k) # TRUE ~ H0, FALSE ~ H1
+  
+  print(nH1_var1)
+  return (res_test_var1)
+}
+```
+
 
 ## Contraste de correlación
 
@@ -341,6 +375,8 @@ kruskal.test(db$HDI~db$Continent)
 kruskal.test(db$CO2_prod~db$Continent)
 kruskal.test(db$GNIPC~db$Continent)
 ```
+
+
 
 ## Contraste de correlación
 
@@ -358,12 +394,34 @@ pairwise.wilcox.test(db$HDI, db$Continent, paired=FALSE,
 summary(db$HDI)
 ```
 
+## HDI
+
+```{r, echo=FALSE}
+ggplot(db, aes(x = Continent, y = HDI, fill = Continent)) +
+  geom_violin(show.legend = FALSE) +
+  geom_boxplot(width=0.2, fill="lightgray") +
+  labs(x = "Continente", y = "HDI", fill = "Continente",
+       title = "HDI por Continente", fill="Continente") + 
+  scale_fill_brewer(palette = "Dark2")
+```
+
 ## Producción de CO2
 
 ```{r, warning=FALSE}
 pairwise.wilcox.test(db$CO2_prod, db$Continent, paired=FALSE,
                      p.adjust.method="bonferroni")
 summary(db$CO2_prod)
+```
+
+## Producción de CO2
+
+```{r, echo=FALSE}
+ggplot(db, aes(x = Continent, y = CO2_prod, fill = Continent)) +
+  geom_violin(show.legend = FALSE) +
+  geom_boxplot(width=0.2, fill="lightgray") +
+  labs(x = "Continente", y = "Producción de CO2", fill = "Continente",
+       title = "Producción de CO2 por Continente", fill="Continente") + 
+  scale_fill_brewer(palette = "Dark2")
 ```
 
 ## PIB
@@ -374,6 +432,17 @@ pairwise.wilcox.test(db$GNIPC, db$Continent, paired=FALSE,
 summary(db$GNIPC)
 ```
 
+## PIB
+
+```{r, echo=FALSE}
+ggplot(db, aes(x = Continent, y = GNIPC, fill = Continent)) +
+  geom_violin(show.legend = FALSE) +
+  geom_boxplot(width=0.2, fill="lightgray") +
+  labs(x = "Continente", y = "PIB", fill = "Continente",
+       title = "PIB por Continente", fill="Continente") + 
+  scale_fill_brewer(palette = "Dark2")
+```
+
 ## Esperanza de vida
 
 ```{r, warning=FALSE}
@@ -382,12 +451,34 @@ pairwise.wilcox.test(db$Life_expect, db$Continent, paired=FALSE,
 summary(db$Life_expect)
 ```
 
+## Esperanza de vida
+
+```{r, echo=FALSE}
+ggplot(db, aes(x = Continent, y = Life_expect, fill = Continent)) +
+  geom_violin(show.legend = FALSE) +
+  geom_boxplot(width=0.2, fill="lightgray") +
+  labs(x = "Continente", y = "Esperanza de vida", fill = "Continente",
+       title = "Esperanza de vida por Continente", fill="Continente") + 
+  scale_fill_brewer(palette = "Dark2")
+```
+
 ## Población
 
 ```{r, warning=FALSE}
 pairwise.wilcox.test(db$Population , db$Continent, paired=FALSE,
                      p.adjust.method="bonferroni")
 summary(db$Population)
+```
+
+## Población
+
+```{r, echo=FALSE}
+ggplot(db, aes(x = Continent, y = Population, fill = Continent)) +
+  geom_violin(show.legend = FALSE) +
+  geom_boxplot(width=0.2, fill="lightgray") +
+  labs(x = "Continente", y = "Población", fill = "Continente",
+       title = "Población por Continente", fill="Continente") + 
+  scale_fill_brewer(palette = "Dark2")
 ```
 
 

@@ -622,7 +622,7 @@ Toni Fuentes Bauzà
 </section>
 <section id="vectores-de-medias-1" class="slide level2">
 <h2>Vectores de medias</h2>
-<p>Media y vector de medias de la producción de la esperanza de vida por continente:</p>
+<p>Media y vector de medias de la esperanza de vida por continente:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 71.27633</code></pre>
@@ -632,7 +632,7 @@ Toni Fuentes Bauzà
 62.78559 72.58051 73.56333 78.65046 70.11231 </code></pre>
 </div>
 </div>
-<p>Media y vector de medias de la producción de la población por continente:</p>
+<p>Media y vector de medias de la población por continente:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40383993</code></pre>
@@ -668,6 +668,40 @@ Population  -0.01782666 0.005138611 -0.04173554 0.004751664  1.000000000</code><
 <h2>Análisis multivariante</h2>
 
 <img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<section id="bootstrap" class="slide level2">
+<h2>Bootstrap</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>contraste_correlacion<span class="ot">&lt;-</span> <span class="cf">function</span>(df, continente,var1,k){  </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="co"># Contrastes a realizar, para var1 y var2:</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="co"># H0: corr_continente=corr_global</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="co"># H1: corr_continente!=corr_global</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  </span>
+<span id="cb14-6"><a href="#cb14-6"></a>  df<span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"Continent"</span>,var1))</span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">filter</span>(df,Continent<span class="sc">==</span>continente)[,var1] <span class="ot">-&gt;</span> continente_df_var1</span>
+<span id="cb14-8"><a href="#cb14-8"></a>  num_paises_cont<span class="ot">=</span><span class="fu">table</span>(df<span class="sc">$</span>Continent)[continente]</span>
+<span id="cb14-9"><a href="#cb14-9"></a>  n<span class="ot">=</span><span class="fu">nrow</span>(df)</span>
+<span id="cb14-10"><a href="#cb14-10"></a>  </span>
+<span id="cb14-11"><a href="#cb14-11"></a>  sample_df<span class="ot">=</span><span class="fu">sample_n</span>(df,num_paises_cont,<span class="at">replace=</span><span class="cn">FALSE</span>)</span>
+<span id="cb14-12"><a href="#cb14-12"></a>  </span>
+<span id="cb14-13"><a href="#cb14-13"></a>  nH1_var1<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a>  </span>
+<span id="cb14-15"><a href="#cb14-15"></a>  <span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>k){</span>
+<span id="cb14-16"><a href="#cb14-16"></a>    <span class="fu">set.seed</span>(x)</span>
+<span id="cb14-17"><a href="#cb14-17"></a>    </span>
+<span id="cb14-18"><a href="#cb14-18"></a>    sample_df<span class="ot">=</span><span class="fu">sample_n</span>(df,num_paises_cont,<span class="at">replace=</span><span class="cn">FALSE</span>)</span>
+<span id="cb14-19"><a href="#cb14-19"></a>    </span>
+<span id="cb14-20"><a href="#cb14-20"></a>    <span class="co"># Test de correlacion</span></span>
+<span id="cb14-21"><a href="#cb14-21"></a>    <span class="co"># var1</span></span>
+<span id="cb14-22"><a href="#cb14-22"></a>    pval_var1<span class="ot">=</span><span class="fu">cor.test</span>(sample_df[,var1],continente_df_var1)<span class="sc">$</span>p.value</span>
+<span id="cb14-23"><a href="#cb14-23"></a>    <span class="cf">if</span> (pval_var1<span class="sc">&lt;</span><span class="fl">0.05</span>){nH1_var1<span class="ot">=</span>nH1_var1<span class="sc">+</span><span class="dv">1</span>}</span>
+<span id="cb14-24"><a href="#cb14-24"></a>  }</span>
+<span id="cb14-25"><a href="#cb14-25"></a>  res_test_var1<span class="ot">=</span>(nH1_var1<span class="sc">&lt;</span>(<span class="dv">3</span><span class="sc">/</span><span class="dv">4</span>)<span class="sc">*</span>k) <span class="co"># TRUE ~ H0, FALSE ~ H1</span></span>
+<span id="cb14-26"><a href="#cb14-26"></a>  </span>
+<span id="cb14-27"><a href="#cb14-27"></a>  <span class="fu">print</span>(nH1_var1)</span>
+<span id="cb14-28"><a href="#cb14-28"></a>  <span class="fu">return</span> (res_test_var1)</span>
+<span id="cb14-29"><a href="#cb14-29"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="contraste-de-correlación" class="slide level2">
 <h2>Contraste de correlación</h2>
 <div class="cell">
@@ -736,6 +770,10 @@ P value adjustment method: bonferroni </code></pre>
 </div>
 </div>
 </section>
+<section id="hdi-1" class="slide level2">
+<h2>HDI</h2>
+
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
 <section id="producción-de-co2" class="slide level2">
 <h2>Producción de CO2</h2>
 <div class="cell">
@@ -759,6 +797,10 @@ P value adjustment method: bonferroni </code></pre>
 </div>
 </div>
 </section>
+<section id="producción-de-co2-1" class="slide level2">
+<h2>Producción de CO2</h2>
+
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-36-1.png" width="960" class="r-stretch"></section>
 <section id="pib" class="slide level2">
 <h2>PIB</h2>
 <div class="cell">
@@ -782,6 +824,10 @@ P value adjustment method: bonferroni </code></pre>
 </div>
 </div>
 </section>
+<section id="pib-1" class="slide level2">
+<h2>PIB</h2>
+
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-40-1.png" width="960" class="r-stretch"></section>
 <section id="esperanza-de-vida" class="slide level2">
 <h2>Esperanza de vida</h2>
 <div class="cell">
@@ -805,6 +851,10 @@ P value adjustment method: bonferroni </code></pre>
 </div>
 </div>
 </section>
+<section id="esperanza-de-vida-1" class="slide level2">
+<h2>Esperanza de vida</h2>
+
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-44-1.png" width="960" class="r-stretch"></section>
 <section id="población" class="slide level2">
 <h2>Población</h2>
 <div class="cell">
@@ -828,6 +878,10 @@ P value adjustment method: bonferroni </code></pre>
 </div>
 </div>
 </section>
+<section id="población-1" class="slide level2">
+<h2>Población</h2>
+
+<img data-src="diapos_3_files/figure-revealjs/unnamed-chunk-48-1.png" width="960" class="r-stretch"></section>
 <section id="conclusiones" class="slide level2">
 <h2>Conclusiones</h2>
 <p>Para responder a las preguntas, puede ser de ayuda observar las covarianzas entre las distintas variables.</p>
