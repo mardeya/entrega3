@@ -6,48 +6,43 @@ editor: visual
 
 ## Índice
 
-- Fuente de datos
-- Resumen del problema
-- Proceso de limpieza de los datos
-- Variables de nuestra base de datos
-- Análisis multivariante
-- Estimación del vector de medias
-- Matriz de correlaciones
-- Contrastes de correlación
-- Conclusiones
-
+-   Fuente de datos
+-   Resumen del problema
+-   Proceso de limpieza de los datos
+-   Variables de nuestra base de datos
+-   Análisis multivariante
+-   Estimación del vector de medias
+-   Matriz de correlaciones
+-   Contrastes de correlación
+-   Conclusiones
 
 ## Fuente de datos
 
-Hemos encontrado nuestra fuente de datos en este  [enlace](https://www.kaggle.com/datasets/toriqulstu/global-socio-economic-and-environmental-indicators) de la página web de _kaggle_
+Hemos encontrado nuestra fuente de datos en este [enlace](https://www.kaggle.com/datasets/toriqulstu/global-socio-economic-and-environmental-indicators) de la página web de *kaggle*
 
-<div style="text-align:center;">
-![](imagen1.png){width=50%}
-</div>
+::: {style="text-align:center;"}
+![](imagen1.png){width="50%"}
+:::
 
-
-Además, hemos complementado nuestra base con otros datos que nos ofrecían información del país sobre el  [continente](https://www.kaggle.com/datasets/statchaitya/country-to-continent) y la [poblacion](https://ourworldindata.org/explorers/population-and-demography).
-
+Además, hemos complementado nuestra base con otros datos que nos ofrecían información del país sobre el [continente](https://www.kaggle.com/datasets/statchaitya/country-to-continent) y la [poblacion](https://ourworldindata.org/explorers/population-and-demography).
 
 ## Resumen del problema
 
 El objetivo de nuestro estudio es encontrar relaciones entre los indicadores sociales, econónimos y ambientales de los diferentes países de nuestro planeta. Además, queremos estudiar las diferencias entre los distintos continentes.
 
-<div style="text-align:center;">
-![](imagen2.jpg){width=80%}
-</div>
-
+::: {style="text-align:center;"}
+![](imagen2.jpg){width="80%"}
+:::
 
 ## Proceso de limpieza de los datos
 
-<div style="text-align:center;">
-![](imagen3.jpg){width=40%}
-</div>
+::: {style="text-align:center;"}
+![](imagen3.jpg){width="40%"}
+:::
 
-- Hemos juntado las 6 tablas usando la función _left_join_ gracias a la clave primaria _ISO3_
-- Hemos convertido las variables _Continente_ y _HDI_level_ en factores. La segunda de ellas ordenado
-- Además hemos cambiado el nombre de algunas variables para mejorar su comprensión
-
+-   Hemos juntado las 6 tablas usando la función *left_join* gracias a la clave primaria *ISO3*
+-   Hemos convertido las variables *Continente* y *HDI_level* en factores. La segunda de ellas ordenado
+-   Además hemos cambiado el nombre de algunas variables para mejorar su comprensión
 
 ## Variables de nuestra base de datos
 
@@ -66,7 +61,29 @@ str(db)
 
 ## Análisis multivariante
 
-Sección TOni
+```{r, echo=FALSE}
+library("GGally")
+a <- db %>% select(c(3, 6, 7, 8, 9, 10)) %>% na.omit
+
+continent_colors <- c("black", "red", "yellow", "green", "blue")
+
+a %>% ggpairs(aes(color=a$Continent, alpha=0.4)) +
+  scale_fill_manual(values = continent_colors) +
+  scale_color_manual(values = continent_colors)
+```
+
+## Correlación
+
+```{r}
+library("ggcorrplot")
+
+db %>% 
+  select(HDI, CO2_prod, GNIPC, Life_expect, Population) %>% 
+  na.omit %>%
+  cor %>% 
+  ggcorrplot(hc.order=TRUE,type="lower")
+```
+
 
 ## Comparación de las variables respecto a los continentes
 
