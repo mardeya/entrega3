@@ -95,7 +95,7 @@ mean(db$CO2_prod %>% na.omit)
 tapply(db$CO2_prod, db$Continent, mean, na.rm = TRUE)
 ```
 
-Media y vector de medias de la producción del PIB por continente:
+Media y vector de medias del PIB por continente:
 
 ```{r}
 mean(db$GNIPC %>% na.omit)
