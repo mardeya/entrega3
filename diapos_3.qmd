@@ -516,3 +516,7 @@ cov(subdf$Life_expect,subdf$CO2_prod)
 ```
 
 Hay cierta asociación positiva, pero la correlación es baja.
+
+## Repositiorio
+
+[https://github.com/mardeya/entrega3](https://github.com/mardeya/entrega3)
