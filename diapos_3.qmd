@@ -497,6 +497,8 @@ subdf=na.omit(db %>% select("HDI","CO2_prod"))
 cov(subdf$HDI,subdf$CO2_prod)
 ```
 
+## Conclusiones
+
 Podemos decir que hay asociación positiva pero baja correlación.
 
 ```{r}
