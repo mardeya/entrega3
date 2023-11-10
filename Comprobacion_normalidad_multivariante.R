@@ -19,3 +19,5 @@ qqPlot(df$CO2_prod,main="CO2_prod",xlab="Cuantiles normales", ylab="Cuantiles de
 qqPlot(df$GNIPC,main="GNIPC",xlab="Cuantiles normales", ylab="Cuantiles de GNIPC")
 qqPlot(df$Life_expect,main="Life_expect",xlab="Cuantiles normales", ylab="Cuantiles de Life_expect")
 qqPlot(df$Population,main="Population",xlab="Cuantiles normales", ylab="Cuantiles de log(Population)")
+
+# Ninguna de las variables parece ser normal.
